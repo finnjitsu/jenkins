@@ -87,7 +87,7 @@ data "aws_ami" "amzn2" {
 resource "aws_instance" "jenkins_01" {
   ami                    = data.aws_ami.amzn2.id
   instance_type          = var.ec2_instance_type
-  availability_zone      = var.az_node_01
+  availability_zone      = "${var.region}a"
   iam_instance_profile   = aws_iam_instance_profile.jenkins_instance_profile.name
   subnet_id              = var.app_subnet_a_id
   user_data              = templatefile("${path.module}/user-data.tpl")
