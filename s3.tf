@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "jenkins_bucket" {
+resource "aws_s3_bucket" "jenkins" {
 
   bucket = "${var.stack_name}-jenkins"
   acl    = "private"
@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "jenkins_bucket" {
 
 resource "aws_s3_bucket_policy" "jenkins_bucket_policy" {
 
-  bucket = "${aws_s3_bucket.jenkins_bucket.id}"
+  bucket = "${aws_s3_bucket.jenkins.id}"
   policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -40,7 +40,7 @@ resource "aws_s3_bucket_policy" "jenkins_bucket_policy" {
       "Principal": "*",
       "Action": "*",
       "Resource": [
-        "arn:aws:s3:::${aws_s3_bucket.jenkins_bucket.id}/*"
+        "arn:aws:s3:::${aws_s3_bucket.jenkins.id}/*"
       ],
       "Condition": {
         "Bool": {
@@ -56,8 +56,8 @@ resource "aws_s3_bucket_policy" "jenkins_bucket_policy" {
       },
       "Action": "s3:PutObject",
       "Resource": [
-        "${aws_s3_bucket.jenkins_bucket.arn}/AWS",
-        "${aws_s3_bucket.jenkins_bucket.arn}/AWS/*"
+        "${aws_s3_bucket.jenkins.arn}/AWS",
+        "${aws_s3_bucket.jenkins.arn}/AWS/*"
       ]
     },
     {
@@ -70,8 +70,8 @@ resource "aws_s3_bucket_policy" "jenkins_bucket_policy" {
       },
       "Action": "s3:*",
       "Resource": [
-        "${aws_s3_bucket.jenkins_bucket.arn}",
-        "${aws_s3_bucket.jenkins_bucket.arn}/*"
+        "${aws_s3_bucket.jenkins.arn}",
+        "${aws_s3_bucket.jenkins.arn}/*"
       ]
     }
   ]

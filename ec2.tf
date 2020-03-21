@@ -84,17 +84,13 @@ data "aws_ami" "amzn2" {
 
 }
 
-data "template_file" "jenkins_init" {
-  template = file("./user-data.tpl")
-}
-
 resource "aws_instance" "jenkins_01" {
   ami                    = data.aws_ami.amzn2.id
   instance_type          = var.ec2_instance_type
   availability_zone      = var.az_node_01
   iam_instance_profile   = aws_iam_instance_profile.jenkins_instance_profile.name
   subnet_id              = var.app_subnet_a_id
-  user_data              = data.template_file.jenkins_init.rendered
+  user_data              = templatefile("${path.module}/user-data.tpl")
   lifecycle {
     prevent_destroy = true
     ignore_changes  = [
@@ -154,7 +150,7 @@ resource "aws_lb" "jenkins_alb" {
     var.web_subnet_b_id
   ]
   security_groups           = [
-    aws_security_group.jenkins_frontend_sg.id,
+    aws_security_group.jenkins_frontend.id,
     aws_security_group.jenkins_lb_sg.id
   ] 
   access_logs {
