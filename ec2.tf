@@ -86,10 +86,6 @@ data "aws_ami" "amzn2" {
 
 data "template_file" "jenkins_init" {
   template = file("./user-data.tpl")
-  vars = {
-    branch                 = var.repo_branch
-    environment            = var.environment
-  }
 }
 
 resource "aws_instance" "jenkins_01" {
