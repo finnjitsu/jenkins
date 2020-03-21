@@ -90,7 +90,7 @@ resource "aws_instance" "jenkins_01" {
   availability_zone      = "${var.region}a"
   iam_instance_profile   = aws_iam_instance_profile.jenkins_instance_profile.name
   subnet_id              = var.app_subnet_a_id
-  user_data              = templatefile("${path.module}/user-data.tpl")
+  user_data              = templatefile("${path.module}/user-data.tpl", {})
   lifecycle {
     prevent_destroy = true
     ignore_changes  = [
