@@ -1,7 +1,8 @@
 resource "aws_s3_bucket" "jenkins" {
 
-  bucket = "${var.stack_name}-jenkins"
-  acl    = "private"
+  bucket        = "${var.stack_name}-jenkins"
+  acl           = "private"
+  force_destroy = true
 
   server_side_encryption_configuration {
     rule {
