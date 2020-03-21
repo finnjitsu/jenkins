@@ -4,7 +4,7 @@
 *                                                                              *
 *******************************************************************************/
 
-/*resource "aws_security_group" "jenkins_frontend" {
+resource "aws_security_group" "jenkins_frontend" {
   name        = "${var.stack_name}-jenkins-frontend-sg"
   description = "Allow https into load balancer for Jenkins."
   vpc_id      = var.vpc_id
@@ -54,7 +54,7 @@ resource "aws_security_group" "jenkins_lb_sg" {
     protocol    = "-1"
    self        = true
   }
-}*/
+}
 
 /*******************************************************************************
 *                                                                              *
