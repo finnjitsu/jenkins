@@ -91,14 +91,6 @@ resource "aws_instance" "jenkins_01" {
   iam_instance_profile   = aws_iam_instance_profile.jenkins_instance_profile.name
   subnet_id              = var.app_subnet_a_id
   user_data              = templatefile("${path.module}/user-data.tpl", {})
-  lifecycle {
-    prevent_destroy = true
-    ignore_changes  = [
-      user_data,
-      root_block_device,
-      ami
-      ]
-  } 
   root_block_device {
     volume_size = var.root_disk_sz
     volume_type = "gp2"
