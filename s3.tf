@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "jenkins" {
 
 resource "aws_s3_bucket_policy" "jenkins_bucket_policy" {
 
-  bucket = "${aws_s3_bucket.jenkins.id}"
+  bucket = aws_s3_bucket.jenkins.id
   policy = <<POLICY
 {
   "Version": "2012-10-17",
