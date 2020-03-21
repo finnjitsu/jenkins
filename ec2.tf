@@ -133,11 +133,11 @@ resource "aws_ebs_volume" "jenkins_01_app_01" {
   type               = "gp2"
   encrypted          = true
   tags = {
-    Name             = "${var.stack_name}-jenkins-01-app-01"
+    Name = "${var.stack_name}-jenkins-01-app-01"
   }
 }
 
-resource "aws_volume_attachment" jenkins_01_app_volume_attachment_01" {
+resource "aws_volume_attachment" "jenkins_01_app_volume_attachment_01" {
   device_name = "/dev/sdb"
   volume_id   = aws_ebs_volume.jenkins_01_app_01.id
   instance_id = aws_instance.jenkins_01.id
