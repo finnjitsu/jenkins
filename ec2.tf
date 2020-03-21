@@ -4,7 +4,7 @@
 *                                                                              *
 *******************************************************************************/
 
-resource "aws_security_group" "jenkins_frontend" {
+/*resource "aws_security_group" "jenkins_frontend" {
   name        = "${var.stack_name}-jenkins-frontend-sg"
   description = "Allow https into load balancer for Jenkins."
   vpc_id      = var.vpc_id
@@ -52,9 +52,9 @@ resource "aws_security_group" "jenkins_lb_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    self        = true
+   self        = true
   }
-}
+}*/
 
 /*******************************************************************************
 *                                                                              *
@@ -119,7 +119,7 @@ resource "aws_instance" "jenkins_01" {
 *                                                                              *
 *******************************************************************************/
 
-resource "aws_ebs_volume" "jenkins_01_app_01" {
+/*resource "aws_ebs_volume" "jenkins_01_app_01" {
   availability_zone  = "${var.region}a"
   size               = var.app_disk_sz
   type               = "gp2"
@@ -133,7 +133,7 @@ resource "aws_volume_attachment" "jenkins_01_app_volume_attachment_01" {
   device_name = "/dev/sdb"
   volume_id   = aws_ebs_volume.jenkins_01_app_01.id
   instance_id = aws_instance.jenkins_01.id
-}
+}*/
 
 /*******************************************************************************
 *                                                                              *
@@ -141,7 +141,7 @@ resource "aws_volume_attachment" "jenkins_01_app_volume_attachment_01" {
 *                                                                              *
 *******************************************************************************/
 
-resource "aws_lb" "jenkins_alb" {
+/*resource "aws_lb" "jenkins_alb" {
   name                      = "${var.stack_name}-jenkins-alb"
   internal                  = false
   load_balancer_type        = "application"
@@ -194,4 +194,4 @@ resource "aws_lb_target_group_attachment" "jenkins_tg_att_01" {
   target_group_arn = aws_lb_target_group.jenkins_tg.arn
   target_id        = aws_instance.jenkins_01.id
   port             = 80
-}
+}*/
