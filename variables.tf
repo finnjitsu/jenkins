@@ -23,6 +23,11 @@ variable "app_disk_sz" {
   description = "How big should the app disk be?"
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC where the stack will live."
+}
+
 variable "app_subnet_a_id" {
   type        = string
   description = "Subnet ID for the first app teir subnet."
